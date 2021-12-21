@@ -1,0 +1,25 @@
+body {
+    background-color: #282c34 !important;
+}
+
+.header{
+	padding : 30px;
+}
+
+.func-container {
+    text-align: center;
+    /*background-color: #282c34;
+    background-color: #3DBDDC;*/
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.display-tag {
+	font-weight : bold;
+	font-size : calc(20px + 2vmin);
+	padding : 30px;
+}

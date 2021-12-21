@@ -1,0 +1,39 @@
+@(trending: com.fasterxml.jackson.databind.JsonNode, displayTitle : String)
+
+@main("Uber GFYCAT"){
+    <div class="container func-container">
+    	<form name="search" action="/search" method="post">
+	        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+	            <input type="search" id="searchinput" name="searchinput" class="form-control ds-input" placeholder="Search in GIFS">
+	            <button class="btn btn-light" type="submit" id="search-btn">GO!</button>
+	        </div>
+        </form>
+        <div id="display" class="row align-items-center">
+            <div class="display-tag">@displayTitle</div>
+            
+            <div>
+            @if(trending != null){
+	            @if(trending.isArray()){
+	            	@for(i <- 0 to 20){
+	            		@if(trending.get(i).get("gfycats") != null){
+	            			<span style="display:flex">#@trending.get(i).get("tagText").textValue()</span>
+								<img data-src="@trending.get(i).get("gfycats").get(0).get("gif100px").textValue()" alt="@trending.get(i).get("gfycats").get(0).get("title").textValue()" 
+								class="lazy img-fluid img-thumbnail" style="max-width:300px; max-height:300px"/>
+							
+						}
+					}
+	            }else{
+		            @if(trending.get("gfycats") != null){
+		            	@for(i <- 0 to trending.get("gfycats").size() -1){
+		            		@if(trending.get("gfycats").get(i).get("gif100px") != null){
+								<img data-src="@trending.get("gfycats").get(i).get("gif100px").textValue()" alt="@trending.get("gfycats").get(i).get("title").textValue()" 
+									class="lazy img-fluid img-thumbnail" style="max-width:300px; max-height:300px"/>
+							}
+						}
+					}
+				}
+			}
+			</div>
+        </div>
+    </div>
+}
